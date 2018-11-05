@@ -1,0 +1,2 @@
+# NodeAddOnWithDelegate
+nodejs addon demo2，目标应用场景需求为：通过addon来调用mac上的自定义framework，然后build出来给到electron工程使用，同时framework回调的delegate最终会通知到js层，另外js层也提供窗口句柄给到native层添加视图
