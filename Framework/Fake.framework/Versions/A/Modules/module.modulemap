@@ -1,0 +1,6 @@
+framework module Fake {
+  umbrella header "Fake.h"
+
+  export *
+  module * { export * }
+}
