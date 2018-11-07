@@ -1,7 +1,8 @@
-#include <node/node.h>
-#include <node/uv.h>
-#include <node/v8.h>
-#include <node/node_buffer.h>
+// 这里注意不能写成#include <node/uv.h>这类，否则在rebuild的时候会导致库的头文件里面include其他头文件的相对路径对不上
+#include <node.h>
+#include <uv.h>
+#include <v8.h>
+#include <node_buffer.h>
 #include <iostream>
 #import <Foundation/Foundation.h>
 #import <Fake/Fake.h>
@@ -76,12 +77,12 @@ void after_worker_cb(uv_work_t *req, int status) {
 {
     printf("test by Hays in on count update: %ld \n", count);
 
-    AsyncRequest *asyncReq = new AsyncRequest;
-    asyncReq->request.data = asyncReq;
-    asyncReq->key = "onCountUpdate";
-    asyncReq->argc = 2;
-    asyncReq->argv = @[@(count)];
-    uv_queue_work(uv_default_loop(), &(asyncReq->request), worker_cb, after_worker_cb);
+    // AsyncRequest *asyncReq = new AsyncRequest;
+    // asyncReq->request.data = asyncReq;
+    // asyncReq->key = "onCountUpdate";
+    // asyncReq->argc = 2;
+    // asyncReq->argv = @[@(count)];
+    // uv_queue_work(uv_default_loop(), &(asyncReq->request), worker_cb, after_worker_cb);
 }
 
 - (void)onFrontDisConnected
@@ -148,7 +149,7 @@ void Test4(const FunctionCallbackInfo<Value> &args) {
 
 void  AddSubView(const FunctionCallbackInfo<Value> &args) {
     v8::Local<v8::Object> handleBuffer = args[0].As<v8::Object>();
-    char* bufferData = (char*)node::Buffer::Data(handleBuffer);
+    unsigned char* bufferData = (unsigned char*)node::Buffer::Data(handleBuffer);
     NSView* view = *reinterpret_cast<NSView**>(bufferData);
     [service addSubView:view];
 }
