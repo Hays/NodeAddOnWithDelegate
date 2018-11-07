@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, weak) id<FakeServiceDelegate> delegate;
 
+- (instancetype)initWithDelegate:(id<FakeServiceDelegate>)delegate;
+
 - (void)test1;
 
 - (NSInteger)test2;
